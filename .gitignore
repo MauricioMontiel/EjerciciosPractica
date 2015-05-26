@@ -1,1 +1,117 @@
-s
+package py.com.uaa.pooj.util.ejercicioPractica2;
+
+
+public abstract class Tarjeta {
+	
+	public String nombreTitular ;
+	public int nroTarjeta;
+	
+	public String getNombreTitular() {
+		return nombreTitular;
+	}
+	public void setNombreTitular(String nombreTitular) {
+		this.nombreTitular = nombreTitular;
+	}
+	public int getNroTarjeta() {
+		return nroTarjeta;
+	}
+	public void setNroTarjeta(int nroTarjeta) {
+		this.nroTarjeta = nroTarjeta;
+	}
+	
+	public  abstract String  compra(int importe);
+		
+
+}
+
+
+
+import java.util.Date;
+
+
+public class TarjetaCredito extends Tarjeta{
+
+	public Date fechaVencimiento;
+	public int saldoDisponible;
+	public int montoCompra;
+	
+	public int getMontoCompra() {
+		return montoCompra;
+	}
+
+	public void setMontoCompra(int montoCompra) {
+		this.montoCompra = montoCompra;
+	}
+
+	public Date getFechaVencimiento() {
+		return fechaVencimiento;
+	}
+
+	public void setFechaVencimiento(Date fechaVencimiento) {
+		this.fechaVencimiento = fechaVencimiento;
+	}
+
+	public int getSaldoDisponible() {
+		return saldoDisponible;
+	}
+
+	public void setSaldoDisponible(int saldoDisponible) {
+		this.saldoDisponible = saldoDisponible;
+	}
+
+	public TarjetaCredito(String nombreTitular, int nroTarjeta, Date fechaVencimiento, int saldoDisponible) {
+		this.setNombreTitular(nombreTitular);
+		this.setNroTarjeta(nroTarjeta);
+		this.setFechaVencimiento(fechaVencimiento);
+		this.setSaldoDisponible(saldoDisponible);
+		
+	}
+
+
+	
+	public TarjetaCredito() {
+		
+	}
+
+	public String compra(int importe) {
+          String resultado = null;
+          if(saldoDisponible >= montoCompra){
+  			resultado = "Aprobada";
+  			}
+  			
+  			if(saldoDisponible < montoCompra){
+  				resultado ="Rechazada";	
+  				}
+  	
+  			
+  			return resultado;
+	
+       
+	}
+	}		
+	
+	
+	public class AplicacionTarjeta {
+
+	public AplicacionTarjeta() {
+		TarjetaCredito T1 = new TarjetaCredito();
+		
+		T1.setNroTarjeta(1541623);
+		T1.setSaldoDisponible(300000);
+		T1.setMontoCompra(200000);
+		
+		
+       TarjetaCredito T2 = new TarjetaCredito();
+		
+		T2.setNroTarjeta(1541623);
+		T2.setSaldoDisponible(100000);
+		T2.setMontoCompra(200000);
+			
+			System.out.println("Tarjeta T1 =" + "Nro de Tarjeta:"  + T1.getNroTarjeta() + " " + " " + "SaldoDisponible:"+ T1.getSaldoDisponible() + " " + " " + "MontoCompra:" +T1.getMontoCompra() + " " + " " + T1.compra(16000) );
+			System.out.println("Tarjeta T2 =" + "Nro de Tarjeta:"  + T2.getNroTarjeta() + " " + " " + "SaldoDisponible:"+ T2.getSaldoDisponible() + " " + " " + "MontoCompra:" +T2.getMontoCompra() + " " + " " + T2.compra(14000) );
+	}
+	public static void main(String[] args) {
+		
+		new AplicacionTarjeta();
+	}
+}
